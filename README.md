@@ -1,6 +1,6 @@
 # Gerenciamento alunos
 
-Objetivo: Criar uma aplicação para o gerencimaneto de alunos, utilizando o framework Django e MySQL.
+Objetivo: Criar uma aplicação para o gerenciamento de alunos, utilizando o framework Django e MySQL.
 
 
 ---
