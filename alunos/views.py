@@ -17,6 +17,6 @@ def alunos_cadastrados(request):
 
 
 def cadastro_aluno(request):
-    """ View do formulario de cadastro de aluno. 
+    """ View do formulario de cadastro de aluno.
     """
     return render(request, 'cadastro_aluno.html')
