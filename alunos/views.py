@@ -1,4 +1,7 @@
+from datetime import date
 from django.shortcuts import render
+
+from .models import Aluno
 
 
 # Create your views here.
@@ -13,7 +16,17 @@ def index(request):
 def alunos_cadastrados(request):
     """ View da tabelas contendo os Alunos Cadastrados.
     """
-    return render(request, 'alunos_cadastrados.html')
+    alunos = Aluno.objects.all()
+
+    for aluno in alunos:
+        idade = (date.today() - aluno.data_nascimento).days // 365
+        aluno.idade = idade
+
+    context = {
+        'alunos': alunos,
+    }
+
+    return render(request, 'alunos_cadastrados.html', context)
 
 
 def cadastro_aluno(request):
