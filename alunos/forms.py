@@ -1,7 +1,7 @@
 from django import forms
 
 
-class AlunosForm(forms.Form):
+class AlunoForm(forms.Form):
     """ Formulario para inserir novo aluno """
 
     nome = forms.CharField(label="Nome do aluno", max_length=100),
