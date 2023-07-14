@@ -1,8 +1,32 @@
-{% extends 'base.html' %}
-
-{% block page_title %} Alunos | Cadastrar Aluno {% endblock %}
-
-
 {% block page_content %}
- <h1> Cadastrar Aluno </h1>
+
+{% load bootstrap5 %}
+
+<div class="modal fade" id="cadastroAlunoModal" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="ModalLabel">Cadastrar Aluno</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                {% comment %} {% bootstrap_messages %} {% endcomment %}
+
+                <form action="{{ form_url }}" method="post" class="form" autocomplete="off">
+                    {% csrf_token %}
+                    
+                    {% bootstrap_form form %}
+                    
+                    <div class="modal-footer">
+                        {% buttons %}
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                            <button type="submit" class="btn btn-primary"> Salvar </button>
+                        {% endbuttons %}
+                    </div>
+                </form>
+            </div>
+           
+        </div>
+    </div>
+</div>
 {% endblock %}

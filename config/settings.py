@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'alunos',
     'stdimage',
+    'bootstrap5',
 ]
 
 MIDDLEWARE = [

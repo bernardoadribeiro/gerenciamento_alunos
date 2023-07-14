@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load bootstrap5 %}
 
 {% block page_title %} Alunos {% endblock %}
 
@@ -16,12 +17,14 @@
             </div>
         </section>
     
-        <div class="container">           
+        <div class="container">
             
             <div class="d-flex justify-content-between">
                 <h2>Alunos cadastrados</h2>
-                <a href="cadastro_aluno/" class="btn btn-success my-2">Cadastrar aluno</a>
+                <a href="cadastro_aluno" class="btn btn-success my-2" data-bs-toggle="modal" data-bs-target="#cadastroAlunoModal" data-bs-whatever="@mdo">Cadastrar aluno</a>
             </div>
+            {% include 'cadastro_aluno.html' %}
+            {% bootstrap_messages %}
 
             <div class="table-responsive">
                 <table class="table table-striped align-middle">
