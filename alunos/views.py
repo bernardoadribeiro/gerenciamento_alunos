@@ -4,7 +4,7 @@ from django.shortcuts import redirect, render
 from django.contrib import messages
 
 from .models import Aluno
-from .forms import AlunoForm
+from .forms import AlunoModelForm
 
 
 # Create your views here.
@@ -29,7 +29,7 @@ def alunos(request):
             idade = (date.today() - aluno.data_nascimento).days // 365
             aluno.idade = idade
 
-        form = AlunoForm(request.POST or None)
+        form = AlunoModelForm()
 
         context = {
             'alunos': alunos,
@@ -44,19 +44,10 @@ def cadastrar_aluno(request):
     """ View do formulario de cadastro de aluno.
     """
 
-    form = AlunoForm(request.POST or None)
+    form = AlunoModelForm(request.POST, request.FILES)
     if str(request.method) == 'POST':
         if form.is_valid():
-            nome = request.POST.get('nome')
-            foto_perfil = request.POST.get('foto_perfil')
-            cpf = request.POST.get('cpf')
-            rg = request.POST.get('rg')
-            curso = request.POST.get('curso')
-            data_nascimento = request.POST.get('data_nascimento')
-            data_ingresso = request.POST.get('data_ingresso')
-
-            Aluno.objects.create(nome=nome, foto_perfil=foto_perfil, cpf=cpf, rg=rg, curso=curso,
-                                 data_nascimento=data_nascimento, data_ingresso=data_ingresso)
+            form.save()
 
             messages.success(request, 'Aluno cadastrado.')
         else:

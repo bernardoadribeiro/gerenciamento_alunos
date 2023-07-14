@@ -12,7 +12,7 @@
             <div class="modal-body">
                 {% comment %} {% bootstrap_messages %} {% endcomment %}
 
-                <form action="{{ form_url }}" method="post" class="form" autocomplete="off">
+                <form action="{{ form_url }}" method="post" class="form" autocomplete="off" enctype="multipart/form-data">
                     {% csrf_token %}
                     
                     {% bootstrap_form form %}
