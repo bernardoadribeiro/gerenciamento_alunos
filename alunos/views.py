@@ -1,4 +1,5 @@
 from datetime import date
+from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from django.contrib import messages
 
@@ -18,19 +19,23 @@ def index(request):
 def alunos(request):
     """ View da tabelas contendo os Alunos Cadastrados.
     """
-    alunos = Aluno.objects.all()
+    if str(request.user) == 'AnonymousUser':
+        # retorna erro 401 (Unauthorized) quando o usuario acessar a rota que nao possui permissao.
+        return HttpResponse(status=401)
+    else:
+        alunos = Aluno.objects.all()
 
-    for aluno in alunos:
-        idade = (date.today() - aluno.data_nascimento).days // 365
-        aluno.idade = idade
+        for aluno in alunos:
+            idade = (date.today() - aluno.data_nascimento).days // 365
+            aluno.idade = idade
 
-    form = AlunoForm(request.POST or None)
+        form = AlunoForm(request.POST or None)
 
-    context = {
-        'alunos': alunos,
-        'form': form,
-        'form_url': 'cadastrar_aluno/'
-    }
+        context = {
+            'alunos': alunos,
+            'form': form,
+            'form_url': 'cadastrar_aluno/'
+        }
 
     return render(request, 'alunos_cadastrados.html', context)
 
