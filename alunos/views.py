@@ -1,6 +1,6 @@
 from datetime import date
 import os
-from django.http import HttpResponse
+
 from django.shortcuts import redirect, render
 from django.contrib import messages
 
@@ -32,12 +32,16 @@ def index(request):
     return render(request, 'index.html', context)
 
 
+def unauthorized(request):
+    return render(request, 'unauthorized.html')
+
+
 def alunos(request):
     """ View da tabelas contendo os Alunos Cadastrados.
     """
     if str(request.user) == 'AnonymousUser':
         # retorna erro 401 (Unauthorized) quando o usuario acessar a rota que nao possui permissao.
-        return HttpResponse(status=401)
+        return redirect('/unauthorized')
     else:
         alunos = Aluno.objects.all()
 

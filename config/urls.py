@@ -27,4 +27,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index),
     path('alunos/', include('alunos.urls')),  # pattern (prefixo) das urls do app 'alunos'
+    path('unauthorized/', views.unauthorized)
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
