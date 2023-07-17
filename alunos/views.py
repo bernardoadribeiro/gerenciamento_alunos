@@ -40,7 +40,6 @@ def alunos(request):
     """ View da tabelas contendo os Alunos Cadastrados.
     """
     if str(request.user) == 'AnonymousUser':
-        # retorna erro 401 (Unauthorized) quando o usuario acessar a rota que nao possui permissao.
         return redirect('/unauthorized')
     else:
         alunos = Aluno.objects.all()
